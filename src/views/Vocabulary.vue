@@ -135,7 +135,7 @@ export default {
           return;
         }
 
-        const response = await axios.get('https://mamanmakuetchehelene.site', {
+        const response = await axios.get('https://mamanmakuetchehelene.site/vocabulary/today', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
