@@ -167,6 +167,36 @@ export default {
   gap: 15px;
 }
 
+/* Add these styles to your <style> section */
+.auth-button {
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.auth-button.login {
+  background-color: #3494E6; /* Blue color, matching the admin button */
+  color: white;
+}
+
+.auth-button.login:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+.auth-button.signup {
+  background-color: #F9CA24; /* Yellow color */
+  color: #333;
+}
+
+.auth-button.signup:hover {
+  background-color: #F0B90B; /* Darker yellow on hover */
+}
+
 .icon-link {
   color: #333;
   font-size: 20px;
