@@ -28,35 +28,6 @@ export default {
       loading: false,
       error: null
     }
-  },
-  mounted() {
-    this.fetchStats();
-  },
-  methods: {
-    async fetchStats() {
-      try {
-        this.loading = true;
-        const token = localStorage.getItem('token');
-
-        if (!token) {
-          this.$router.push('/login');
-          return;
-        }
-
-        const response = await axios.get('https://mamanmakuetchehelene.site/admin/stats', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        this.stats = response.data;
-        this.loading = false;
-      } catch (err) {
-        console.error('Error fetching admin stats:', err);
-        this.error = "Failed to load statistics";
-        this.loading = false;
-      }
-    }
   }
 }
 </script>
