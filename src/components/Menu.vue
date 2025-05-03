@@ -75,7 +75,7 @@ export default {
     },
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
-     // document.body.style.overflow = '';
+      document.body.style.overflow = '';
     },
     goToAdminPanel() {
       this.$router.push('/admin');
@@ -223,6 +223,10 @@ export default {
     overflow-y: auto;
     transition: right 0.3s ease;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  body.menu-mobile-open {
+    overflow: hidden;
   }
 
   .menu-mobile-open {
