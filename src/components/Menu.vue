@@ -210,19 +210,6 @@ export default {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .menu-center {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100vh;
-    background: white;
-    flex-direction: column;
-    padding: 80px 20px 20px;
-    z-index: 101;
-    transition: right 0.3s ease;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  }
 
   .menu-mobile-open {
     right: 0;
