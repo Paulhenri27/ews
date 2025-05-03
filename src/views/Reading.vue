@@ -232,10 +232,6 @@ export default {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.text-container {
-  flex: 1;
-}
-
 .text-container p {
   margin-bottom: 20px;
   line-height: 1.6;
