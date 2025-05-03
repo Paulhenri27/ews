@@ -92,16 +92,19 @@
       </section>
     </div>
   </div>
+  <FooterComponent />
 </template>
 
 <script>
 import MenuComponent from '@/components/Menu.vue'
+import FooterComponent from '@/components/AppFooter.vue'
 import axios from 'axios';
 
 export default {
   name: 'VocabularyView',
   components: {
-    MenuComponent
+    MenuComponent,
+    FooterComponent
   },
   data() {
     return {
