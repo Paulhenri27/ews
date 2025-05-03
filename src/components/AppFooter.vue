@@ -3,8 +3,8 @@
     <div class="footer-content">
       <div class="footer-links">
         <a href="#" class="footer-link">Contact us</a>
-        <a href="#" class="footer-link">Terms & Conditions</a>
-        <a href="#" class="footer-link">Privacy</a>
+        <router-link to="/terms" class="footer-link">Terms & Conditions</router-link>
+        <router-link to="/privacy" class="footer-link">Privacy</router-link>
       </div>
       <div class="footer-copyright">
         ©2017-2025 ews.com. All Rights Reserved.

@@ -45,6 +45,16 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/privacy',
+    name: 'Privacy',
+    component: () => import('@/views/PrivacyPolicy.vue')
+  },
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: () => import('@/views/TermsOfUse.vue')
+  },
+  {
     path: '/listening',
     name: 'Listening',
     component: () => import('../views/Listening.vue'),
