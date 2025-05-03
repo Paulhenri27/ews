@@ -198,31 +198,11 @@ export default {
   transition: all 0.3s ease;
 }
 
-.mobile-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
-}
+
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .menu-center {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100vh;
-    background: white;
-    flex-direction: column;
-    padding: 80px 20px 20px;
-    z-index: 101;
-    transition: right 0.3s ease;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  }
+
 
   .menu-mobile-open {
     right: 0;
