@@ -220,6 +220,7 @@ export default {
     flex-direction: column;
     padding: 80px 20px 20px;
     z-index: 101;
+    overflow-y: auto;
     transition: right 0.3s ease;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   }
