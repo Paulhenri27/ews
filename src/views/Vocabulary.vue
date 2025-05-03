@@ -191,11 +191,11 @@ export default {
   display: flex;
   gap: 30px;
   margin-bottom: 40px;
-  align-items: center;
+
 }
 
 .image-container {
-  flex: 0 0 300px;
+  flex: 0 0 500px;
 }
 
 .image-container img {
@@ -206,7 +206,18 @@ export default {
 
 .text-container {
   flex: 1;
+  padding: 25px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  height: 10%;
 }
+
+.text-container:hover {
+  box-shadow: 0 8px 16px rgba(58, 134, 255, 0.2);
+}
+
 
 .text-container p {
   margin-bottom: 20px;
