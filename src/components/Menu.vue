@@ -71,11 +71,16 @@ export default {
   methods: {
     toggleMobileMenu() {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
-      document.body.style.overflow = this.isMobileMenuOpen ? 'hidden' : '';
+      if (this.isMobileMenuOpen) {
+        document.body.classList.add('menu-open');
+      } else {
+        document.body.classList.remove('menu-open');
+      }
     },
+
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
-      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     },
     goToAdminPanel() {
       this.$router.push('/admin');
@@ -225,7 +230,7 @@ export default {
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   }
 
-  body.menu-mobile-open {
+  body.menu-open {
     overflow: hidden;
   }
 
