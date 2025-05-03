@@ -373,6 +373,19 @@ table tr:hover {
   height: 300px;
 }
 
+.text-container {
+  flex: 1;
+  padding: 25px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.text-container:hover {
+  box-shadow: 0 8px 16px rgba(58, 134, 255, 0.2);
+}
+
 .loading-spinner {
   border: 4px solid rgba(58, 134, 255, 0.3);
   border-radius: 50%;
