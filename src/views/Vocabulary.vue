@@ -408,6 +408,21 @@ section[v-else-if="currentTab === 'new'"] table td:nth-child(4) {
   table td {
     padding: 20px 10px;
   }
+
+  table th:nth-child(1),
+  table td:nth-child(1) {
+    width: 100%;
+  }
+
+  table th:nth-child(2),
+  table td:nth-child(2) {
+    width: 100%;
+  }
+
+  table th:nth-child(3),
+  table td:nth-child(3) {
+    width: 100%;
+  }
 }
 
 @media (max-width: 580px) {
