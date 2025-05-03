@@ -13,7 +13,7 @@
       <!-- Image Section -->
       <section class="image-section">
         <div class="image-container">
-          <img src="@/assets/logo.jpg" alt="Student listening" />
+          <img src="@/assets/listening.jpg" alt="Student listening" />
         </div>
         <div class="text-container">
           <p>

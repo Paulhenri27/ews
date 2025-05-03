@@ -15,7 +15,7 @@
       <!-- Image Section -->
       <section class="image-section">
         <div class="image-container">
-          <img src="@/assets/logo.jpg" alt="Vocabulary learning" />
+          <img src="@/assets/vocabulary.jpg" alt="Vocabulary learning" />
         </div>
         <div class="text-container">
           <p>
