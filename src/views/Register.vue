@@ -180,7 +180,7 @@ export default {
 }
 
 .form-container form button {
-  width: 175px;
+  width: 200px;
   background-color: #FFD166;
   color: #333;
   border: none;
