@@ -165,7 +165,7 @@ export default {
 }
 
 .form-container form button {
-  max-width: 50%;
+  width: 175px;
   background-color: #FFD166;
   color: #333;
   border: none;
