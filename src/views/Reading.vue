@@ -220,11 +220,10 @@ export default {
   display: flex;
   gap: 30px;
   margin-bottom: 40px;
-  align-items: center;
 }
 
 .image-container {
-  flex: 0 0 300px;
+  flex: 0 0 500px;
 }
 
 .image-container img {
