@@ -102,16 +102,19 @@
       </div>
     </section>
   </div>
+  <FooterComponent />
 </template>
 
 <script>
 import MenuComponent from '@/components/Menu.vue'
+import FooterComponent from '@/components/AppFooter.vue'
 import { mapActions } from 'vuex';
 import { getUser } from '../services/authService.js';
 
 export default {
   components: {
-    MenuComponent
+    MenuComponent,
+    FooterComponent
   },
   data() {
     return {
