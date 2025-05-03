@@ -194,12 +194,12 @@ export default {
       this.isSubmitting = true;
       this.submitMessage = '';
 
-      if (!(await isAuthenticated())) {
-        localStorage.removeItem('token');
-        alert('Session expired. Please log in again.');
-        window.location.href = '/login';
-        return;
-      }
+      // if (!(await isAuthenticated())) {
+      //   localStorage.removeItem('token');
+      //   alert('Session expired. Please log in again.');
+      //   window.location.href = '/login';
+      //   return;
+      // }
 
       try {
         const token = localStorage.getItem('token');

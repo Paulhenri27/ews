@@ -279,12 +279,12 @@ export default {
         return;
       }
 
-      if (!(await isAuthenticated())) {
-        localStorage.removeItem('token');
-        alert('Session expired. Please log in again.');
-        window.location.href = '/login';
-        return;
-      }
+      // if (!(await isAuthenticated())) {
+      //   localStorage.removeItem('token');
+      //   alert('Session expired. Please log in again.');
+      //   window.location.href = '/login';
+      //   return;
+      // }
 
       this.isUploading = true;
       this.uploadMessage = '';
