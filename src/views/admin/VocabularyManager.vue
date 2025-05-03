@@ -124,6 +124,20 @@
 import AdminMenu from '@/components/admin/AdminMenu.vue';
 import axios from 'axios';
 
+
+async function isAuthenticated() {
+  try {
+    const res = await axios.get('https://mamanmakuetchehelene.site/api/auth/check', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+    return res.status === 200;
+  } catch {
+    return false;
+  }
+}
+
 export default {
   name: 'VocabularyManager',
   components: {
@@ -179,6 +193,13 @@ export default {
     async addVocabulary() {
       this.isSubmitting = true;
       this.submitMessage = '';
+
+      if (!(await isAuthenticated())) {
+        localStorage.removeItem('token');
+        alert('Session expired. Please log in again.');
+        window.location.href = '/login';
+        return;
+      }
 
       try {
         const token = localStorage.getItem('token');
