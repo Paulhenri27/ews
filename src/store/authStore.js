@@ -15,7 +15,6 @@ export default createStore({
             // Decode the token and set the user
             const decoded = decodeToken(token);
 
-            console.log('Decoded token:', decoded); // Debugging line
             if (decoded) {
                 state.user = {
                     email: decoded.sub,

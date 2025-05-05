@@ -14,10 +14,10 @@ export const connectToChat = (token, onMessageReceived) => {
             'Authorization': `Bearer ${token}` // Pass the JWT token for authentication
         },
         debug: function(str) {
-            console.log('STOMP: ' + str);
+
         },
         onConnect: () => {
-            console.log('Connected to WebSocket');
+
             stompClient.subscribe('/user/queue/messages', (message) => {
                 const parsedMessage = JSON.parse(message.body);
                 onMessageReceived(parsedMessage);

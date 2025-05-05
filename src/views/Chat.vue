@@ -180,7 +180,7 @@ export default {
     this.sortContacts();
 
     this.stompClient = connectToChat(this.token, (message) => {
-      console.log('Received message:', message);
+
 
       if (this.selectedRecipient && this.selectedRecipient.id) {
         // Check if the current user is the sender or recipient of this message
@@ -192,13 +192,13 @@ export default {
             (isCurrentUserSender && message.recipientId === this.selectedRecipient.id) ||
             (isCurrentUserRecipient && message.senderId === this.selectedRecipient.id);
 
-        console.log('Is message for current conversation:', isMessageForCurrentConversation);
+
 
         if (isMessageForCurrentConversation) {
           this.messages.push(message);
           this.$nextTick(() => this.scrollToBottom());
         } else {
-          console.log('Message belongs to a different conversation');
+
 
           // If we're receiving a message from someone else, update unread count
           if (isCurrentUserRecipient && !isMessageForCurrentConversation) {
@@ -446,7 +446,7 @@ export default {
     },
     async selectRecipient(recipientId, firstName, lastName) {
 
-      console.log('Selected recipient:', recipientId, firstName, lastName);
+
       this.selectedRecipient = { id: recipientId };
       this.selectedRecipientName = `${firstName} ${lastName}`;
       this.selectedRecipientInitials = this.getInitials(firstName, lastName);
@@ -469,7 +469,7 @@ export default {
               { headers: { Authorization: `Bearer ${this.token}` } }
           );
 
-          console.log(`Marked ${response.data.updatedCount} messages as read`);
+
 
           // Clear unread messages for this sender
           this.unreadMessageIds[senderId] = [];
