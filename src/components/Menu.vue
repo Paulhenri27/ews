@@ -19,7 +19,6 @@
         <template v-if="isAuthenticated">
         <router-link to="/chat" class="icon-link">
           <i class="fas fa-comment"></i>
-          <span v-if="unreadCount > 0" class="unread-badge">{{ unreadCount }}</span>
         </router-link>
         <button v-if="isAdmin" @click="goToAdminPanel" class="admin-button">
           Panel
@@ -55,9 +54,6 @@ export default {
     };
   },
   computed:{
-    unreadCount() {
-      return this.$store.state.unreadMessageCount || 0;
-    },
     isAuthenticated() {
       // Check if token exists and is not expired
       const token = localStorage.getItem('token');
