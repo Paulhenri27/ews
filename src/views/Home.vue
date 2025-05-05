@@ -137,6 +137,7 @@ export default {
       if (this.$store.state.token) {
         try {
           this.user = await getUser(this.$store.state.token);
+           await this.fetchUnreadMessages();
         } catch (error) {
           console.error('Authentication error:', error);
           // Clear invalid token but stay on home page
@@ -148,7 +149,27 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setToken', 'logout'])
+    ...mapActions(['setToken', 'logout']),
+    async fetchUnreadMessages() {
+    if (!this.user || !this.user.email) return;
+    
+    try {
+    const response = await axios.post(
+      'https://mamanmakuetchehelene.site/api/message/unread',
+      { email: this.user.email },
+      { headers: { Authorization: `Bearer ${this.$store.state.token}` } }
+    );
+    
+    const unreadMessages = response.data;
+    const totalUnread = unreadMessages.length;
+    
+    
+    this.$store.commit('setUnreadMessageCount', totalUnread);
+    
+    } catch (error) {
+    console.error('Error fetching unread messages:', error);
+    }
+    }
   }
 };
 </script>
