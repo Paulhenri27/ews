@@ -19,6 +19,7 @@
         <template v-if="isAuthenticated">
         <router-link to="/chat" class="icon-link">
           <i class="fas fa-comment"></i>
+          <span v-if="totalUnreadCount > 0" class="unread-badge">{{ totalUnreadCount }}</span>
         </router-link>
         <button v-if="isAdmin" @click="goToAdminPanel" class="admin-button">
           Panel
@@ -77,6 +78,34 @@ export default {
         document.body.classList.remove('menu-open');
       }
     },
+    async fetchUnreadMessages() {
+      if (!this.isAuthenticated || !this.user.email) return;
+
+      try {
+        const response = await axios.post('https://mamanmakuetchehelene.site/api/message/unread',
+            { email: this.user.email },
+            { headers: { Authorization: `Bearer ${this.token}` } }
+        );
+
+        const unreadMessages = response.data;
+        this.unreadCounts = {};
+
+        unreadMessages.forEach(message => {
+          const senderId = message.senderId;
+
+          // Count unread messages per sender
+          if (!this.unreadCounts[senderId]) {
+            this.unreadCounts[senderId] = 0;
+          }
+          this.unreadCounts[senderId]++;
+        });
+
+        // Calculate total unread messages
+        this.totalUnreadCount = Object.values(this.unreadCounts).reduce((total, count) => total + count, 0);
+      } catch (error) {
+        console.error('Error fetching unread messages:', error);
+      }
+    },
 
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
@@ -89,18 +118,29 @@ export default {
   mounted() {
 
     const userString = localStorage.getItem('user');
+    this.token = localStorage.getItem('token');
 
     if (userString) {
       try {
         const userObj = JSON.parse(userString);
         this.isAdmin = userObj.role === 'ADMIN';
         this.user = userObj;
+
+        this.fetchUnreadMessages();
+        this.messageCheckInterval = setInterval(() => {
+          this.fetchUnreadMessages();
+        }, 30000);
       } catch (error) {
         console.error('Error parsing user data:', error);
         this.isAdmin = false;
       }
     } else {
       this.isAdmin = false;
+    }
+  },
+  beforeDestroy() {
+    if (this.messageCheckInterval) {
+      clearInterval(this.messageCheckInterval);
     }
   }
 };
@@ -241,6 +281,30 @@ export default {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
+}
+
+.icon-link {
+  position: relative;
+  color: #333;
+  font-size: 20px;
+}
+
+.unread-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #F9CA24;
+  color: #333;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 /* Responsive styles */
