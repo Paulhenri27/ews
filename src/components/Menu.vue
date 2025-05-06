@@ -134,7 +134,7 @@ export default {
         this.fetchUnreadMessages();
         this.messageCheckInterval = setInterval(() => {
           this.fetchUnreadMessages();
-        }, 30000);
+        }, 60000);
       } catch (error) {
         console.error('Error parsing user data:', error);
         this.isAdmin = false;
