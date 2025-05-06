@@ -54,6 +54,9 @@ export default {
       isMobileMenuOpen: false,
       isAdmin: false,
       user : {},
+      token: null,
+      unreadCounts: {},
+      totalUnreadCount: 0
     };
   },
   computed:{
