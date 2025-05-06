@@ -30,6 +30,9 @@ export default createStore({
             localStorage.removeItem('token');
             localStorage.removeItem('user'); // Clear user from localStorage
         },
+        setUnreadMessageCount(state, count) {
+            state.unreadMessageCount = count;
+        }
     },
     actions: {
         setToken({ commit }, token) {

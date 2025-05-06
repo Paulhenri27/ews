@@ -98,7 +98,6 @@
     </div>
   </div>
   <FooterComponent />
-  <FooterComponent />
 </template>
 
 <script>
