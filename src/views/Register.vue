@@ -58,7 +58,7 @@
 import { mapActions } from 'vuex';
 import { register } from '../services/authService.js';
 import logoImage from '@/assets/logo.jpg';
-import backgroundVideo from '@/assets/intro-video.mp4';
+import backgroundVideo from '@/assets/intro.mp4';
 
 export default {
   data() {
