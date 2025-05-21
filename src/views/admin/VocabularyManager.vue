@@ -34,6 +34,22 @@
             </div>
 
             <div class="form-group">
+              <label for="type">Word Type</label>
+              <select
+                  id="type"
+                  v-model="formData.type"
+                  required
+              >
+                <option value="" disabled>Select word type</option>
+                <option value="NOUN">Noun</option>
+                <option value="VERB">Verb</option>
+                <option value="ADJECTIVE">Adjective</option>
+                <option value="ADVERB">Adverb</option>
+                <option value="EXPRESSION">Expression</option>
+              </select>
+            </div>
+
+            <div class="form-group">
               <label for="description">Description</label>
               <textarea
                   id="description"
@@ -80,8 +96,8 @@
             <tr>
               <th>Word</th>
               <th>Translation</th>
-              <th>Description</th>
               <th>Type</th>
+              <th>Description</th>
               <th>Date Added</th>
               <th>Actions</th>
             </tr>
@@ -90,8 +106,9 @@
             <tr v-for="item in vocabularyItems" :key="item.id">
               <td>{{ item.word }}</td>
               <td>{{ item.translation }}</td>
+              <td>{{ formatType(item.type) }}</td>
               <td>{{ item.description }}</td>
-              <td><select>{{item.type}}</select></td>
+              <td>{{ formatDate(item.createdAt) }}</td>
               <td>
                 <button @click="confirmDelete(item)" class="delete-btn">
                   Delete
@@ -150,7 +167,7 @@ export default {
         word: '',
         translation: '',
         description: '',
-        type: ['EXPRESSION' ,'ADVERB' ,'ADJECTIVE' , 'VERB' , 'NOUN']
+        type: ''
       },
       isSubmitting: false,
       submitMessage: '',
@@ -167,6 +184,10 @@ export default {
     this.fetchVocabulary();
   },
   methods: {
+    formatType(type) {
+      if (!type) return 'N/A';
+      return type.charAt(0) + type.slice(1).toLowerCase();
+    },
     formatDate(dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString('en-US', {
@@ -220,7 +241,8 @@ export default {
         this.formData = {
           word: '',
           translation: '',
-          description: ''
+          description: '',
+          type: ''
         };
 
         // Refresh vocabulary list
@@ -501,5 +523,20 @@ textarea {
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #3A86FF;
 }
 </style>
