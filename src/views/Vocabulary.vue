@@ -32,8 +32,13 @@
 
       <!-- Tabs -->
       <nav class="tabs">
-        <button :class="{ active: currentTab === 'all' }" @click="currentTab = 'all'">all words</button>
-        <button :class="{ active: currentTab === 'new' }" @click="currentTab = 'new'">recently added</button>
+        <button :class="{ active: currentTab === 'all' }" @click="currentTab = 'all'">All</button>
+        <button :class="{ active: currentTab === 'new' }" @click="currentTab = 'new'">Recent</button>
+        <button :class="{ active: currentTab === 'NOUN' }" @click="currentTab = 'NOUN'">Nouns</button>
+        <button :class="{ active: currentTab === 'VERB' }" @click="currentTab = 'VERB'">Verbs</button>
+        <button :class="{ active: currentTab === 'ADJECTIVE' }" @click="currentTab = 'ADJECTIVE'">Adjectives</button>
+        <button :class="{ active: currentTab === 'ADVERB' }" @click="currentTab = 'ADVERB'">Adverbs</button>
+        <button :class="{ active: currentTab === 'EXPRESSION' }" @click="currentTab = 'EXPRESSION'">Expressions</button>
       </nav>
 
       <!-- Loading and Error States -->
@@ -55,6 +60,7 @@
             <th>Word</th>
             <th>Translation</th>
             <th>Description</th>
+            <th>Type</th>
           </tr>
           </thead>
           <tbody>
@@ -62,6 +68,7 @@
             <td data-label="Word"><strong>{{ item.word }}</strong></td>
             <td data-label="Translation">{{ item.translation }}</td>
             <td data-label="Description">{{ item.description }}</td>
+            <td data-label="Type">{{ formatType(item.type) }}</td>
           </tr>
           </tbody>
         </table>
@@ -76,12 +83,35 @@
             <th>Word</th>
             <th>Translation</th>
             <th>Description</th>
+            <th>Type</th>
             <th>Added</th>
           </tr>
           </thead>
           <tbody>
-          <!-- Recently Added Tab -->
           <tr v-for="item in recentVocabulary" :key="item.id">
+            <td data-label="Word"><strong>{{ item.word }}</strong></td>
+            <td data-label="Translation">{{ item.translation }}</td>
+            <td data-label="Description">{{ item.description }}</td>
+            <td data-label="Type">{{ formatType(item.type) }}</td>
+            <td data-label="Date Added">{{ formatDate(item.createdAt) }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section v-else class="content-section">
+        <h2>{{ formatType(currentTab) }}s</h2>
+        <table>
+          <thead>
+          <tr>
+            <th>Word</th>
+            <th>Translation</th>
+            <th>Description</th>
+            <th>Added</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="item in wordsByType" :key="item.id">
             <td data-label="Word"><strong>{{ item.word }}</strong></td>
             <td data-label="Translation">{{ item.translation }}</td>
             <td data-label="Description">{{ item.description }}</td>
@@ -119,6 +149,9 @@ export default {
       return [...this.vocabulary]
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 15);
+    },
+    wordsByType() {
+      return this.vocabulary.filter(item => item.type === this.currentTab);
     }
   },
   mounted() {
@@ -159,6 +192,10 @@ export default {
         month: 'short',
         day: 'numeric'
       });
+    },
+    formatType(type) {
+      if (!type) return '';
+      return type.charAt(0) + type.slice(1).toLowerCase();
     }
   }
 };
@@ -261,7 +298,8 @@ export default {
 
 .tabs {
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 30px;
   border-bottom: 2px solid #f0f0f0;
   padding-bottom: 10px;
@@ -270,13 +308,14 @@ export default {
 .tabs button {
   background-color: transparent;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   cursor: pointer;
   font-weight: bold;
   color: #666;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 1px;
   transition: all 0.2s;
+  border-radius: 5px;
 }
 
 .tabs button.active {
