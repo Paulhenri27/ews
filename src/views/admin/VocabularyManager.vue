@@ -81,6 +81,7 @@
               <th>Word</th>
               <th>Translation</th>
               <th>Description</th>
+              <th>Type</th>
               <th>Date Added</th>
               <th>Actions</th>
             </tr>
@@ -90,7 +91,7 @@
               <td>{{ item.word }}</td>
               <td>{{ item.translation }}</td>
               <td>{{ item.description }}</td>
-              <td>{{ formatDate(item.createdAt) }}</td>
+              <td><select>{{item.type}}</select></td>
               <td>
                 <button @click="confirmDelete(item)" class="delete-btn">
                   Delete
@@ -148,7 +149,8 @@ export default {
       formData: {
         word: '',
         translation: '',
-        description: ''
+        description: '',
+        type: ['EXPRESSION' ,'ADVERB' ,'ADJECTIVE' , 'VERB' , 'NOUN']
       },
       isSubmitting: false,
       submitMessage: '',
